@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
+      - name: Check repository privacy
+        run: python scripts/check_repository_privacy.py
       - name: Check generated prompts
         run: python scripts/build_portable_prompts.py --check
       - name: Validate repository

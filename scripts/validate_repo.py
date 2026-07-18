@@ -17,6 +17,8 @@ LEGAL_SOURCES_PATH = ROOT / "legal-sources.json"
 LEGAL_BASELINE_PATH = ROOT / "legal-source-baseline.json"
 SKILL = ROOT / "skills" / "pruefe-de-datenschutz"
 SKILL_MD = SKILL / "SKILL.md"
+PRIVACY_CHECK = ROOT / "scripts" / "check_repository_privacy.py"
+EXPECTED_PLUGIN_NAME = "nowaxdata-dsgvo-compliance"
 
 
 def error(errors: list[str], message: str) -> None:
@@ -61,8 +63,8 @@ def main() -> int:
     for key in required_plugin:
         if not plugin.get(key):
             error(errors, f"plugin.json: Pflichtfeld fehlt: {key}")
-    if plugin.get("name") != ROOT.name:
-        error(errors, "Pluginname und Ordnername stimmen nicht überein")
+    if plugin.get("name") != EXPECTED_PLUGIN_NAME:
+        error(errors, f"Pluginname muss {EXPECTED_PLUGIN_NAME!r} sein")
     if not re.fullmatch(r"\d+\.\d+\.\d+", str(plugin.get("version", ""))):
         error(errors, "plugin.json: Version ist keine strikte semantische Version")
     if plugin.get("author", {}).get("name") != "Norman Wagner / WagnerConnect":
@@ -92,6 +94,14 @@ def main() -> int:
         error(errors, "Workflow zur Release-Prüfung fehlt")
     if not (ROOT / ".github" / "dependabot.yml").is_file():
         error(errors, "Dependabot-Konfiguration fehlt")
+    for required_path in (
+        ROOT / "PRIVACY.md",
+        ROOT / "CONTRIBUTING.md",
+        ROOT / ".github" / "pull_request_template.md",
+        PRIVACY_CHECK,
+    ):
+        if not required_path.is_file():
+            error(errors, f"Projekt-Schutzdatei fehlt: {required_path.relative_to(ROOT)}")
 
     skill_text = SKILL_MD.read_text(encoding="utf-8")
     frontmatter = parse_frontmatter(skill_text)
@@ -149,6 +159,16 @@ def main() -> int:
         error(errors, "Test für Datenschutz-Sicherheitsgate fehlt")
 
     validate_markdown_links(errors)
+
+    privacy_check = subprocess.run(
+        [sys.executable, str(PRIVACY_CHECK)],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if privacy_check.returncode:
+        error(errors, privacy_check.stdout.strip() or "Datenschutzprüfung des Repositorys fehlgeschlagen")
 
     generated = subprocess.run(
         [sys.executable, str(ROOT / "scripts" / "build_portable_prompts.py"), "--check"],

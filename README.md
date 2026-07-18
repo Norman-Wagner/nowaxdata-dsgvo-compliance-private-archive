@@ -19,12 +19,15 @@ Nicht jede KI unterstützt eigene Skills, Dateien oder Systemanweisungen. Der po
 ## Architektur
 
 ```text
-nowax-dsgvo-compliance/
+nowaxdata-dsgvo-compliance/
 ├── .codex-plugin/plugin.json
+├── CONTRIBUTING.md
+├── PRIVACY.md
 ├── .github/workflows/
 │   ├── legal-watch.yml
 │   ├── release.yml
 │   └── validate.yml
+├── .github/pull_request_template.md
 ├── legal-sources.json
 ├── legal-source-baseline.json
 ├── RECHTSSTAND.md
@@ -39,6 +42,7 @@ nowax-dsgvo-compliance/
 ├── tests/cases.json
 └── scripts/
     ├── build_portable_prompts.py
+    ├── check_repository_privacy.py
     ├── legal_watch.py
     └── validate_repo.py
 ```
@@ -47,6 +51,8 @@ nowax-dsgvo-compliance/
 - `references/` trennt Fachmodule. Die KI lädt nur das, was der Fall braucht.
 - `agents/openai.yaml` und `.codex-plugin/plugin.json` sind optionale OpenAI-Adapter. Die Rechtslogik bleibt davon unabhängig.
 - `dist/` macht denselben Kern für KI-Systeme ohne Skill-Unterstützung nutzbar.
+- `PRIVACY.md` trennt den Projektcode klar von der Datenverarbeitung durch GitHub und den jeweils gewählten KI-Anbieter.
+- `CONTRIBUTING.md`, die Pull-Request-Vorlage und der Datenschutz-Scanner verhindern, dass Rechtsänderungen oder sensible Daten ungeprüft eingehen.
 - Die Prüfskripte erkennen Strukturfehler und fehlende Quellen. Sie können keine juristische Richtigkeit garantieren.
 
 ## Laufende Aktualisierung
@@ -59,7 +65,7 @@ Vor der ersten öffentlichen Freigabe muss eine verantwortliche Person die techn
 
 Geplante GitHub-Workflows können bei längerer Inaktivität eines öffentlichen Repositorys deaktiviert werden. Der erfolgreiche Lauf ist deshalb monatlich manuell zu kontrollieren.
 
-`release.yml` prüft bei Tags und manuellen Läufen das vollständige Projekt. Bei einem Tag muss beispielsweise `v0.4.1` exakt zur Version `0.4.1` im Plugin-Manifest passen. Der Workflow veröffentlicht bewusst nichts automatisch; eine Veröffentlichung bleibt eine kontrollierte Maintainer-Entscheidung.
+`release.yml` prüft bei Tags und manuellen Läufen das vollständige Projekt. Bei einem Tag muss beispielsweise `v0.5.0` exakt zur Version `0.5.0` im Plugin-Manifest passen. Der Workflow veröffentlicht bewusst nichts automatisch; eine Veröffentlichung bleibt eine kontrollierte Maintainer-Entscheidung.
 
 ## Sicherheitsgrenzen
 
@@ -70,9 +76,12 @@ Geplante GitHub-Workflows können bei längerer Inaktivität eines öffentlichen
 
 Der Skill unterstützt Erstprüfung und interne Compliance. Er ersetzt keine verbindliche Einzelfallberatung durch eine dazu befugte Person. Wer ihn als Rechtsdienstleistung anbietet, muss insbesondere das RDG (Rechtsdienstleistungsgesetz) und berufsrechtliche Grenzen eigenständig prüfen.
 
+Die [Datenschutzinformation](PRIVACY.md) beschreibt, welche Datenverarbeitung der Projektcode selbst auslöst und welche Verantwortung bei GitHub, dem eingesetzten KI-Anbieter und der einsetzenden Organisation verbleibt. Beiträge müssen zusätzlich die Regeln in [CONTRIBUTING.md](CONTRIBUTING.md) erfüllen.
+
 ## Validierung
 
 ```bash
+python scripts/check_repository_privacy.py
 python scripts/build_portable_prompts.py --check
 python scripts/validate_repo.py
 python scripts/legal_watch.py --report /tmp/legal-watch-report.md
