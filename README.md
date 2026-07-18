@@ -1,4 +1,4 @@
-# NOWA X DSGVO Compliance
+# nowaxdata DSGVO Compliance
 
 Herstellerneutraler Datenschutz-Skill für KI-Systeme. Entwickelt von **Norman Wagner / WagnerConnect**. Ein Projekt von **nowaXdata – Der digitale Datenschutzordner**.
 
