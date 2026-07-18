@@ -40,7 +40,7 @@
       "category": "verbindliches-recht",
       "url": "https://www.gesetze-im-internet.de/ttdsg/",
       "hash_mode": "text",
-      "required_markers": ["Telekommunikation-Digitale-Dienste-Datenschutz-Gesetz", "TDDDG"],
+      "required_markers": ["TDDDG", "Gesetz über den Datenschutz und den Schutz der Privatsphäre"],
       "last_reviewed_on": "2026-07-18",
       "review_every_days": 30
     },

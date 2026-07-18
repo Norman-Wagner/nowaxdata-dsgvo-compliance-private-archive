@@ -8,6 +8,8 @@ Diese Information beschreibt den technischen Datenschutzrahmen dieses öffentlic
 
 Für die veröffentlichten Projektinhalte verantwortlich: **Norman Wagner / WagnerConnect**.
 
+Vorläufiger Projektkontakt: GitHub-Konto [@Norman-Wagner](https://github.com/Norman-Wagner). Dieser Kontakt benötigt keine noch nicht betriebsbereite Projektwebsite.
+
 GitHub betreibt die Plattform und verarbeitet bei deren Nutzung unter anderem Konto-, Nutzungs- und Beitragsdaten nach der [GitHub General Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement). Für die Verarbeitung in einem gewählten KI-System gelten zusätzlich die Datenschutz- und Vertragsbedingungen des jeweiligen Anbieters. Dieses Repository kann deren Speicherfristen, Trainingsnutzung, Unterauftragnehmer oder Drittlandtransfers nicht festlegen.
 
 ## Was der Projektcode selbst tut
@@ -26,10 +28,10 @@ Vor der Nutzung mit realen Fällen muss die einsetzende Organisation den gewähl
 ## Hinweise und Betroffenenanliegen
 
 - Rechtliche oder redaktionelle Hinweise ohne Personendaten können über die öffentliche Issue-Vorlage gemeldet werden.
-- Sicherheitslücken oder vertrauliche Hinweise nicht öffentlich einstellen; den in [SECURITY.md](SECURITY.md) beschriebenen privaten Meldeweg verwenden.
+- Sicherheitslücken, Datenschutzvorfälle oder vertrauliche Hinweise nicht öffentlich einstellen; den in [SECURITY.md](SECURITY.md) beschriebenen privaten GitHub-Meldeweg verwenden.
 - Anliegen zu Daten, die GitHub als Plattformbetreiber verarbeitet, sind an GitHub über die in dessen Datenschutzerklärung genannten Wege zu richten.
 
-Ein zusätzlicher privater Projektkontakt wird ergänzt, sobald ein belastbarer Kontaktkanal veröffentlicht werden kann. Bis dahin dürfen über das Repository keine vertraulichen Betroffenenanliegen übermittelt werden.
+Für Berichtigung oder Entfernung eines eigenen öffentlichen Beitrags kann dessen URL ohne weitere vertrauliche Angaben in einem Issue genannt werden. Wenn bereits die Anfrage vertraulich ist, den privaten Sicherheitsmeldeweg verwenden. Sobald ein eigener E-Mail-Kanal zuverlässig funktioniert, kann er ergänzend aufgenommen werden; für die Veröffentlichung des Repositorys ist keine erfundene oder unerreichbare Adresse vorgesehen.
 
 ## Grenze der Aussage
 

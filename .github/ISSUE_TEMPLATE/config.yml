@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Vertrauliche Sicherheits- oder Datenschutzmeldung
+    url: https://github.com/Norman-Wagner/nowaxdata-dsgvo-compliance/security
+    about: Auf der Security-Seite „Report a vulnerability“ verwenden und keine vertraulichen Angaben öffentlich eintragen.

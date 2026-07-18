@@ -59,13 +59,13 @@ nowaxdata-dsgvo-compliance/
 
 Der Workflow `legal-watch.yml` prüft die registrierten amtlichen und behördlichen Quellen wöchentlich sowie auf manuellen Start. Er erkennt Nichterreichbarkeit, fehlende Kennzeichen, geänderte technische Fingerabdrücke und überfällige fachliche Prüfintervalle. Bei Auffälligkeiten erstellt oder ergänzt er ein GitHub-Issue; er ändert niemals automatisch eine Rechtsauslegung.
 
-`legal-sources.json` ist das maschinenlesbare Quellenregister. `legal-source-baseline.json` enthält ausschließlich nach menschlicher Sichtprüfung bestätigte technische Fingerabdrücke. Verantwortlichkeiten, Freigabegrenzen und der Abschlussprozess stehen in [RECHTSSTAND.md](RECHTSSTAND.md).
+`legal-sources.json` ist das maschinenlesbare Quellenregister. `legal-source-baseline.json` enthält automatisch erfasste technische Fingerabdrücke. Diese belegen nur den beobachteten Dokumentstand und sind ausdrücklich keine menschliche oder juristische Freigabe. Verantwortlichkeiten, Freigabegrenzen und der Abschlussprozess stehen in [RECHTSSTAND.md](RECHTSSTAND.md).
 
-Vor der ersten öffentlichen Freigabe muss eine verantwortliche Person die technische Baseline bestätigen. Bei neuen Normen, Urteilen, Behördenleitlinien oder Anwendungsfristen ist eine fachkundige datenschutzrechtliche Prüfung vorgesehen. Für reine Link-, Build- und Strukturpflege ist keine juristische Prüfung erforderlich.
+Die technische Ausgangsbeobachtung kann automatisiert erzeugt werden. Bei neuen Normen, Urteilen, Behördenleitlinien, Anwendungsfristen oder einer geänderten Rechtsauslegung ist dagegen eine fachkundige datenschutzrechtliche Prüfung vorgesehen. Für reine Link-, Build-, Zeichenkodierungs- und Strukturpflege ist keine juristische Prüfung erforderlich.
 
 Geplante GitHub-Workflows können bei längerer Inaktivität eines öffentlichen Repositorys deaktiviert werden. Der erfolgreiche Lauf ist deshalb monatlich manuell zu kontrollieren.
 
-`release.yml` prüft bei Tags und manuellen Läufen das vollständige Projekt. Bei einem Tag muss beispielsweise `v0.5.0` exakt zur Version `0.5.0` im Plugin-Manifest passen. Der Workflow veröffentlicht bewusst nichts automatisch; eine Veröffentlichung bleibt eine kontrollierte Maintainer-Entscheidung.
+`release.yml` prüft bei Tags und manuellen Läufen das vollständige Projekt. Bei einem Tag muss beispielsweise `v0.6.0` exakt zur Version `0.6.0` im Plugin-Manifest passen. Der Workflow veröffentlicht bewusst nichts automatisch; eine Veröffentlichung bleibt eine kontrollierte Maintainer-Entscheidung.
 
 ## Sicherheitsgrenzen
 

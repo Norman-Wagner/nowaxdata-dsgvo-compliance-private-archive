@@ -4,16 +4,16 @@
 
 - Redaktionell geprüfter Ausgangsstand: **18. Juli 2026**
 - Automatische Quellenüberwachung: wöchentlich und manuell auslösbar
-- Technische Baseline: vor der ersten öffentlichen Freigabe noch durch eine verantwortliche Person zu bestätigen
+- Technische Baseline: am **18. Juli 2026** automatisch aus zehn erreichbaren amtlichen oder behördlichen Quellen erfasst
 - Verantwortlich für Projektfreigaben: **Norman Wagner / WagnerConnect**
 
-Der Eintrag bestätigt die dokumentierte Prüfung des Projekts zu diesem Stichtag. Er ist keine Garantie, dass sich Recht, Rechtsprechung oder Behördenpraxis danach nicht geändert haben.
+Die Baseline bestätigt nur den technisch beobachteten Dokumentstand. Sie ist keine menschliche oder juristische Freigabe und keine Garantie, dass sich Recht, Rechtsprechung oder Behördenpraxis danach nicht geändert haben.
 
 ## Rollen
 
 | Änderung | Mindestprüfung |
 | --- | --- |
-| Defekter Link, technische Metadaten, Prompt-Neubau | technische Prüfung |
+| Defekter Link, technische Metadaten, Zeichenkodierung, Prompt-Neubau oder erste Baseline | technische Prüfung; kein Jurist erforderlich |
 | Neue Dokumentfassung ohne erkennbare inhaltliche Auswirkung | dokumentierte redaktionelle Prüfung im Vier-Augen-Prinzip empfohlen |
 | Neue Norm, Rechtsprechung, Behördenleitlinie oder Anwendungsfrist | fachkundige datenschutzrechtliche Prüfung |
 | Neue Bewertung eines konkreten fremden Einzelfalls | Prüfung der Befugnis nach dem Rechtsdienstleistungsgesetz und gegebenenfalls anwaltliche Freigabe |
@@ -26,23 +26,23 @@ Die Bezeichnung „Jurist“ allein belegt keine Befugnis zur selbstständigen R
 2. `scripts/legal_watch.py` prüft Erreichbarkeit, erwartete Kennzeichen, technische Fingerabdrücke und Review-Intervalle.
 3. Bei Abweichungen wird ein offenes GitHub-Issue mit dem Label `legal-watch` erstellt oder ergänzt.
 4. Eine verantwortliche Person prüft die amtliche Quelle und ihre Bedeutung.
-5. Erst danach werden Skill, Referenzen, Tests und gegebenenfalls die technische Baseline in einem Pull Request angepasst.
+5. Erst danach werden Skill, Referenzen, Tests und gegebenenfalls die technische Baseline angepasst.
 6. Die normale Validierung muss vor dem Zusammenführen vollständig bestehen.
 
 Der Workflow ändert niemals selbstständig Rechtsauslegung, Risikostufe, Frist oder Handlungsempfehlung.
 
-## Technische Baseline freigeben
+## Technische Baseline erfassen
 
-Erst nach Sichtprüfung aller registrierten Zielseiten ausführen:
+Für die erste technische Ausgangsbeobachtung oder nach einem dokumentierten Quellenreview ausführen:
 
 ```bash
 python scripts/legal_watch.py \
   --network \
-  --refresh-baseline \
-  --reviewer "Vorname Nachname"
+  --capture-baseline \
+  --captured-by "System oder verantwortliche Person"
 ```
 
-Der Befehl bestätigt nur die beobachteten technischen Dokumentstände. Eine fachliche Rechtsstandsprüfung muss zusätzlich durch Änderung von `last_reviewed_on` in `legal-sources.json` dokumentiert werden.
+Der Befehl speichert nur technische Fingerabdrücke, Zieladressen und Erfassungsdatum. Er darf nicht als Rechtsfreigabe bezeichnet werden. Eine fachliche Rechtsstandsprüfung wird getrennt durch das Prüfdatum in `legal-sources.json` und die zugehörige Issue- oder Commit-Dokumentation nachgewiesen.
 
 ## Abschluss eines Rechtsstands-Issues
 

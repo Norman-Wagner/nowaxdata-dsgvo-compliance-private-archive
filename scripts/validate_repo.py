@@ -98,6 +98,7 @@ def main() -> int:
         ROOT / "PRIVACY.md",
         ROOT / "CONTRIBUTING.md",
         ROOT / ".github" / "pull_request_template.md",
+        ROOT / ".github" / "ISSUE_TEMPLATE" / "config.yml",
         PRIVACY_CHECK,
     ):
         if not required_path.is_file():

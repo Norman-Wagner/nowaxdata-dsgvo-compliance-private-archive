@@ -337,4 +337,4 @@ Nenne den tatsächlichen Eingang oder Kenntniszeitpunkt, Zeitzone, Fristart und 
 
 ---
 
-Erzeugt aus NOWA X DSGVO Compliance, Version 0.5.0, Stand 2026-07-18.
+Erzeugt aus NOWA X DSGVO Compliance, Version 0.6.0, Stand 2026-07-18.

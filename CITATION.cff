@@ -5,6 +5,6 @@ type: software
 authors:
   - family-names: "Wagner"
     given-names: "Norman"
-version: 0.5.0
+version: 0.6.0
 date-released: 2026-07-18
 license: Apache-2.0

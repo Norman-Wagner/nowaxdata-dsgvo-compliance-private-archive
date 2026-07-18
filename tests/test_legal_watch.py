@@ -53,7 +53,7 @@ class LegalWatchTests(unittest.TestCase):
     def test_missing_baseline_requests_attention(self) -> None:
         results = MODULE.evaluate(
             registry(),
-            {"schema_version": 1, "sources": {}},
+            {"schema_version": 2, "sources": {}},
             today=date(2026, 7, 18),
             network=True,
             fetcher=fetcher(b"<html><body>Testgesetz</body></html>"),
@@ -72,12 +72,13 @@ class LegalWatchTests(unittest.TestCase):
         source = source_registry["sources"][0]
         digest, _ = MODULE.fingerprint(source, fetched)
         baseline = {
-            "schema_version": 1,
+            "schema_version": 2,
             "sources": {
                 "test-law": {
                     "sha256": digest,
-                    "approved_on": "2026-07-18",
-                    "approved_by": "Test Review",
+                    "captured_on": "2026-07-18",
+                    "captured_by": "Test Automation",
+                    "capture_kind": "automated-technical-observation",
                 }
             },
         }
@@ -92,12 +93,13 @@ class LegalWatchTests(unittest.TestCase):
 
     def test_changed_content_and_overdue_review_are_detected(self) -> None:
         baseline = {
-            "schema_version": 1,
+            "schema_version": 2,
             "sources": {
                 "test-law": {
                     "sha256": "0" * 64,
-                    "approved_on": "2026-01-01",
-                    "approved_by": "Test Review",
+                    "captured_on": "2026-01-01",
+                    "captured_by": "Test Automation",
+                    "capture_kind": "automated-technical-observation",
                 }
             },
         }
@@ -114,12 +116,17 @@ class LegalWatchTests(unittest.TestCase):
     def test_missing_marker_is_detected(self) -> None:
         results = MODULE.evaluate(
             registry(),
-            {"schema_version": 1, "sources": {}},
+            {"schema_version": 2, "sources": {}},
             today=date(2026, 7, 18),
             network=True,
             fetcher=fetcher(b"<html><body>Andere Seite</body></html>"),
         )
         self.assertEqual(results[0]["markers_missing"], ["Testgesetz"])
+
+    def test_declared_charset_is_used_for_visible_text(self) -> None:
+        body = "Gesetz über den Datenschutz".encode("iso-8859-1")
+        text = MODULE.text_payload(body, "text/html", "iso-8859-1")
+        self.assertIn("über", text)
 
 
 if __name__ == "__main__":

@@ -56,6 +56,7 @@ class FetchResult:
     content_type: str
     final_url: str
     status: int
+    charset: str | None = None
 
 
 Fetcher = Callable[[dict[str, object], dict[str, object]], FetchResult]
@@ -142,8 +143,8 @@ def validate_registry(registry: dict[str, object]) -> list[str]:
 
 def validate_baseline(baseline: dict[str, object], source_ids: set[str]) -> list[str]:
     errors: list[str] = []
-    if baseline.get("schema_version") != 1:
-        errors.append("legal-source-baseline.json: schema_version muss 1 sein")
+    if baseline.get("schema_version") != 2:
+        errors.append("legal-source-baseline.json: schema_version muss 2 sein")
     entries = baseline.get("sources")
     if not isinstance(entries, dict):
         return errors + ["legal-source-baseline.json: sources ist ungültig"]
@@ -158,11 +159,13 @@ def validate_baseline(baseline: dict[str, object], source_ids: set[str]) -> list
         if not isinstance(fingerprint, str) or not re.fullmatch(r"[0-9a-f]{64}", fingerprint):
             errors.append(f"legal-source-baseline.json: sha256 für {source_id} ist ungültig")
         try:
-            date.fromisoformat(str(entry.get("approved_on", "")))
+            date.fromisoformat(str(entry.get("captured_on", "")))
         except ValueError:
-            errors.append(f"legal-source-baseline.json: approved_on für {source_id} ist ungültig")
-        if not isinstance(entry.get("approved_by"), str) or not entry["approved_by"].strip():
-            errors.append(f"legal-source-baseline.json: approved_by für {source_id} fehlt")
+            errors.append(f"legal-source-baseline.json: captured_on für {source_id} ist ungültig")
+        if not isinstance(entry.get("captured_by"), str) or not entry["captured_by"].strip():
+            errors.append(f"legal-source-baseline.json: captured_by für {source_id} fehlt")
+        if entry.get("capture_kind") != "automated-technical-observation":
+            errors.append(f"legal-source-baseline.json: capture_kind für {source_id} ist ungültig")
     return errors
 
 
@@ -186,11 +189,28 @@ def fetch_source(source: dict[str, object], policy: dict[str, object]) -> FetchR
         if len(body) > maximum:
             raise ValueError(f"Antwort überschreitet {maximum} Bytes")
         content_type = response.headers.get_content_type()
-        return FetchResult(body=body, content_type=content_type, final_url=final_url, status=response.status)
+        charset = response.headers.get_content_charset()
+        return FetchResult(
+            body=body,
+            content_type=content_type,
+            final_url=final_url,
+            status=response.status,
+            charset=charset,
+        )
 
 
-def text_payload(body: bytes, content_type: str) -> str:
-    decoded = body.decode("utf-8", errors="replace")
+def text_payload(body: bytes, content_type: str, charset: str | None = None) -> str:
+    decoded: str | None = None
+    for encoding in dict.fromkeys((charset, "utf-8", "iso-8859-1")):
+        if not encoding:
+            continue
+        try:
+            decoded = body.decode(encoding)
+            break
+        except (LookupError, UnicodeDecodeError):
+            continue
+    if decoded is None:
+        decoded = body.decode("utf-8", errors="replace")
     if content_type in {"text/html", "application/xhtml+xml"} or "<html" in decoded[:1000].lower():
         parser = VisibleTextParser()
         parser.feed(decoded)
@@ -205,7 +225,7 @@ def fingerprint(source: dict[str, object], fetched: FetchResult) -> tuple[str, s
         payload = fetched.body
         searchable = fetched.body.decode("utf-8", errors="replace")
     else:
-        searchable = text_payload(fetched.body, fetched.content_type)
+        searchable = text_payload(fetched.body, fetched.content_type, fetched.charset)
         payload = searchable.encode("utf-8")
     return hashlib.sha256(payload).hexdigest(), searchable
 
@@ -298,7 +318,7 @@ def render_report(results: list[dict[str, object]], today: date, network: bool) 
             retrieval = "erreichbar"
             if result["baseline_missing"]:
                 technical = "Baseline fehlt"
-                actions.append(f"**{result['title']}:** technische Baseline nach Sichtprüfung freigeben.")
+                actions.append(f"**{result['title']}:** technische Ausgangsbeobachtung erfassen.")
             elif result["changed"]:
                 technical = "geändert"
                 actions.append(f"**{result['title']}:** Änderung fachlich bewerten und erst danach die Baseline erneuern.")
@@ -347,10 +367,10 @@ def write_github_output(attention_count: int) -> None:
         handle.write(f"attention_count={attention_count}\n")
 
 
-def refresh_baseline(
+def capture_baseline(
     registry: dict[str, object],
     baseline_path: Path,
-    reviewer: str,
+    captured_by: str,
     today: date,
     fetcher: Fetcher = fetch_source,
 ) -> int:
@@ -373,8 +393,9 @@ def refresh_baseline(
                 continue
             entries[str(source["id"])] = {
                 "sha256": digest,
-                "approved_on": today.isoformat(),
-                "approved_by": reviewer,
+                "captured_on": today.isoformat(),
+                "captured_by": captured_by,
+                "capture_kind": "automated-technical-observation",
                 "observed_url": fetched.final_url,
             }
         except (OSError, ValueError, urllib.error.URLError) as exc:
@@ -385,8 +406,8 @@ def refresh_baseline(
         print("Baseline wurde nicht verändert.", file=sys.stderr)
         return 1
     payload = {
-        "schema_version": 1,
-        "notice": "Technische Fingerabdrücke nach menschlicher Sichtprüfung freigegeben; keine juristische Freigabe.",
+        "schema_version": 2,
+        "notice": "Automatisch erfasste technische Fingerabdrücke; weder menschliche noch juristische Freigabe.",
         "sources": entries,
     }
     baseline_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -403,11 +424,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--json-report", type=Path, help="Maschinenlesbaren Bericht schreiben")
     parser.add_argument("--today", type=date.fromisoformat, default=date.today())
     parser.add_argument(
-        "--refresh-baseline",
+        "--capture-baseline",
         action="store_true",
-        help="Fingerabdrücke nach menschlicher Sichtprüfung neu freigeben",
+        help="Fingerabdrücke als technische Ausgangsbeobachtung erfassen",
     )
-    parser.add_argument("--reviewer", help="Verantwortliche Person für --refresh-baseline")
+    parser.add_argument("--captured-by", help="System oder Person, das/die die technische Erfassung ausführt")
     return parser.parse_args()
 
 
@@ -429,14 +450,14 @@ def main() -> int:
             print(f"FEHLER: {error}", file=sys.stderr)
         return 1
 
-    if args.refresh_baseline:
+    if args.capture_baseline:
         if not args.network:
-            print("FEHLER: --refresh-baseline erfordert --network", file=sys.stderr)
+            print("FEHLER: --capture-baseline erfordert --network", file=sys.stderr)
             return 1
-        if not args.reviewer or len(args.reviewer.strip()) < 3:
-            print("FEHLER: --reviewer muss die freigebende Person nennen", file=sys.stderr)
+        if not args.captured_by or len(args.captured_by.strip()) < 3:
+            print("FEHLER: --captured-by muss System oder Person der technischen Erfassung nennen", file=sys.stderr)
             return 1
-        return refresh_baseline(registry, args.baseline, args.reviewer.strip(), args.today)
+        return capture_baseline(registry, args.baseline, args.captured_by.strip(), args.today)
 
     results = evaluate(registry, baseline, today=args.today, network=args.network)
     report = render_report(results, args.today, args.network)

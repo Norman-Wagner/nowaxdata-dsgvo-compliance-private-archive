@@ -1,5 +1,76 @@
 {
-  "schema_version": 1,
-  "notice": "Technische Fingerabdrücke werden erst nach menschlicher Sichtprüfung freigegeben.",
-  "sources": {}
+  "schema_version": 2,
+  "notice": "Automatisch erfasste technische Fingerabdrücke; weder menschliche noch juristische Freigabe.",
+  "sources": {
+    "dsgvo": {
+      "sha256": "e116768c5d0c4fff1268bc1db9d50c2cf93c30c5d9e073b250043c33ba05ed51",
+      "captured_on": "2026-07-18",
+      "captured_by": "NOWA X Legal Watch (automatische technische Erfassung)",
+      "capture_kind": "automated-technical-observation",
+      "observed_url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj/deu"
+    },
+    "bdsg": {
+      "sha256": "0256ff1ddf926913cae5650d604a2bdf5fdda746a8052cd4ad69de1756d2515c",
+      "captured_on": "2026-07-18",
+      "captured_by": "NOWA X Legal Watch (automatische technische Erfassung)",
+      "capture_kind": "automated-technical-observation",
+      "observed_url": "https://www.gesetze-im-internet.de/bdsg_2018/"
+    },
+    "tdddg": {
+      "sha256": "acf3712c6aafac84502f2d2a0d6e3f7f0f69d922fa4a0dd687ccc4868b67caea",
+      "captured_on": "2026-07-18",
+      "captured_by": "NOWA X Legal Watch (automatische technische Erfassung)",
+      "capture_kind": "automated-technical-observation",
+      "observed_url": "https://www.gesetze-im-internet.de/ttdsg/"
+    },
+    "ki-verordnung": {
+      "sha256": "537f84ca23203830a29ccebaa842ddb34727f5612e7553cfd956a7b39eac8ea4",
+      "captured_on": "2026-07-18",
+      "captured_by": "NOWA X Legal Watch (automatische technische Erfassung)",
+      "capture_kind": "automated-technical-observation",
+      "observed_url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj/deu"
+    },
+    "scc-2021-914": {
+      "sha256": "afb76c51eb0dea14eab2c8a6c0b0f3636568a3d7376b4f046c6e9495e1e89343",
+      "captured_on": "2026-07-18",
+      "captured_by": "NOWA X Legal Watch (automatische technische Erfassung)",
+      "capture_kind": "automated-technical-observation",
+      "observed_url": "https://eur-lex.europa.eu/eli/dec_impl/2021/914/oj?locale=de"
+    },
+    "scc-2021-915": {
+      "sha256": "2af12a696908dbd9c3ad16645a1aca4efb368167a9d52f6f3c27f81b6bd4ff48",
+      "captured_on": "2026-07-18",
+      "captured_by": "NOWA X Legal Watch (automatische technische Erfassung)",
+      "capture_kind": "automated-technical-observation",
+      "observed_url": "https://eur-lex.europa.eu/eli/dec_impl/2021/915/oj?locale=de"
+    },
+    "edpb-leitlinien": {
+      "sha256": "bfc37e0589663ecce7c2ed180b6f6495f5fa0ddc4fdac243a31c1743e17956a7",
+      "captured_on": "2026-07-18",
+      "captured_by": "NOWA X Legal Watch (automatische technische Erfassung)",
+      "capture_kind": "automated-technical-observation",
+      "observed_url": "https://www.edpb.europa.eu/public-consultations_en"
+    },
+    "dsk-orientierungshilfen": {
+      "sha256": "20b546c534b7f9c77a635bd59c1a13097e7ad012050d2e630d5eb17556ce3b44",
+      "captured_on": "2026-07-18",
+      "captured_by": "NOWA X Legal Watch (automatische technische Erfassung)",
+      "capture_kind": "automated-technical-observation",
+      "observed_url": "https://www.datenschutzkonferenz-online.de/orientierungshilfen.html"
+    },
+    "bfdi-dsk-ueberblick": {
+      "sha256": "8fffafbe77d563b43dd545c2b680a45d3855b33915119053fdde0a951a1c0be9",
+      "captured_on": "2026-07-18",
+      "captured_by": "NOWA X Legal Watch (automatische technische Erfassung)",
+      "capture_kind": "automated-technical-observation",
+      "observed_url": "https://www.bfdi.bund.de/DE/Fachthemen/Gremienarbeit/Datenschutzkonferenz/DSK-tableOrientierungshilfe.html"
+    },
+    "de-rechtsprechung": {
+      "sha256": "a0e4f23b2c58571de6c2e32bf5216d528568f162710337b9f73fa1b2ee665053",
+      "captured_on": "2026-07-18",
+      "captured_by": "NOWA X Legal Watch (automatische technische Erfassung)",
+      "capture_kind": "automated-technical-observation",
+      "observed_url": "https://www.rechtsprechung-im-internet.de/jportal/portal/page/bsjrsprod.psml"
+    }
+  }
 }

@@ -1,6 +1,6 @@
 {
   "name": "nowaxdata-dsgvo-compliance",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Quellenbasierte Erstprüfung deutscher und europäischer Datenschutzfragen mit Datensicherheitsgate, Fristentriage und prüfbaren Ergebnissen.",
   "author": {
     "name": "Norman Wagner / WagnerConnect"
