@@ -1,0 +1,54 @@
+name: Änderung des Rechtsstands
+description: Neue oder geänderte amtliche Quelle zur fachlichen Prüfung melden
+title: "[Rechtsstand] "
+labels:
+  - legal-watch
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Keine echten Personendaten, Mandatsinformationen oder vertraulichen Unterlagen eintragen.
+  - type: input
+    id: source
+    attributes:
+      label: Amtliche Quelle
+      description: Direkter Link zur amtlichen oder behördlichen Fundstelle
+      placeholder: https://...
+    validations:
+      required: true
+  - type: input
+    id: effective-date
+    attributes:
+      label: Veröffentlichungs- oder Anwendungsdatum
+      description: Soweit aus der Quelle ersichtlich
+      placeholder: JJJJ-MM-TT oder noch offen
+    validations:
+      required: true
+  - type: textarea
+    id: observation
+    attributes:
+      label: Beobachtete Änderung
+      description: Nur belegt beschreiben; rechtliche Folgerungen getrennt kennzeichnen
+    validations:
+      required: true
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Möglicher Änderungsbedarf
+      options:
+        - Noch zu prüfen
+        - Nur Quellenregister
+        - Skill-Anweisung oder Referenz
+        - Tests und Ausgabeprüfung
+        - Dringende Frist- oder Sicherheitsregel
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Sicherheitsprüfung
+      options:
+        - label: Die Meldung enthält keine echten Personendaten oder vertraulichen Falldaten.
+          required: true
+        - label: Eine automatische Rechtsauslegung oder ungeprüfte Änderung wird nicht verlangt.
+          required: true

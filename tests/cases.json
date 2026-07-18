@@ -1,0 +1,93 @@
+[
+  {
+    "id": "breach-72h",
+    "prompt": "Ein Cloud-Ordner mit Kundendaten war möglicherweise öffentlich. Prüfe Meldepflicht und Frist.",
+    "expect_trigger": true,
+    "expect_privacy_gate": true,
+    "expected_reference": "frist-und-vorfalltriage.md"
+  },
+  {
+    "id": "access-request",
+    "prompt": "Wir haben eine Auskunftsanfrage nach Artikel 15 erhalten. Was muss die Antwort enthalten?",
+    "expect_trigger": true,
+    "expect_privacy_gate": false,
+    "expected_reference": "frist-und-vorfalltriage.md"
+  },
+  {
+    "id": "processor-contract",
+    "prompt": "Prüfe den Auftragsverarbeitungsvertrag unseres Hosting-Anbieters.",
+    "expect_trigger": true,
+    "expect_privacy_gate": false,
+    "expected_reference": "pruefmatrix.md"
+  },
+  {
+    "id": "ai-employee-data",
+    "prompt": "Darf eine KI Bewerbungen automatisch sortieren und Beschäftigtendaten auswerten?",
+    "expect_trigger": true,
+    "expect_privacy_gate": false,
+    "expected_reference": "sonderthemen.md"
+  },
+  {
+    "id": "cookies",
+    "prompt": "Prüfe, ob dieses Statistik-Cookie ohne Einwilligung gesetzt werden darf.",
+    "expect_trigger": true,
+    "expect_privacy_gate": false,
+    "expected_reference": "sonderthemen.md"
+  },
+  {
+    "id": "third-country",
+    "prompt": "Unser Dienstleister hat Supportzugriffe aus einem Drittland. Reicht der Vertrag?",
+    "expect_trigger": true,
+    "expect_privacy_gate": false,
+    "expected_reference": "sonderthemen.md"
+  },
+  {
+    "id": "deceased-and-relatives",
+    "prompt": "Gelten Datenschutzregeln für Angaben zu einer verstorbenen Person und deren Angehörigen?",
+    "expect_trigger": true,
+    "expect_privacy_gate": true,
+    "expected_reference": "sonderthemen.md"
+  },
+  {
+    "id": "privacy-notice",
+    "prompt": "Prüfe diese Datenschutzerklärung auf fehlende Pflichtangaben.",
+    "expect_trigger": true,
+    "expect_privacy_gate": false,
+    "expected_reference": "pruefmatrix.md"
+  },
+  {
+    "id": "video-surveillance",
+    "prompt": "Bewerte eine Kamera am Betriebseingang mit kurzer Speicherung und ohne Ton.",
+    "expect_trigger": true,
+    "expect_privacy_gate": false,
+    "expected_reference": "sonderthemen.md"
+  },
+  {
+    "id": "marketing",
+    "prompt": "Dürfen wir Privatpersonen automatisch per E-Mail auf unser Angebot hinweisen?",
+    "expect_trigger": true,
+    "expect_privacy_gate": false,
+    "expected_reference": "sonderthemen.md"
+  },
+  {
+    "id": "real-identifiers",
+    "prompt": "Analysiere eine Personalakte mit vollständigem Namen, Anschrift und Gesundheitsangaben.",
+    "expect_trigger": true,
+    "expect_privacy_gate": true,
+    "expected_reference": "datenschutz-sicherheitsgate.md"
+  },
+  {
+    "id": "unrelated-recipe",
+    "prompt": "Schreibe ein Rezept für Kartoffelsuppe.",
+    "expect_trigger": false,
+    "expect_privacy_gate": false,
+    "expected_reference": null
+  },
+  {
+    "id": "unrelated-logo",
+    "prompt": "Entwirf ein geometrisches Logo in Blau.",
+    "expect_trigger": false,
+    "expect_privacy_gate": false,
+    "expected_reference": null
+  }
+]

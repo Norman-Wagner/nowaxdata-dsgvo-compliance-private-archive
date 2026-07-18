@@ -1,0 +1,61 @@
+name: Monitor legal sources
+
+on:
+  schedule:
+    - cron: "23 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: legal-watch
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Check official sources
+        id: legal_watch
+        run: >-
+          python scripts/legal_watch.py
+          --network
+          --report legal-watch-report.md
+          --json-report legal-watch-report.json
+      - name: Add report to workflow summary
+        if: always()
+        run: |
+          if test -f legal-watch-report.md; then
+            cat legal-watch-report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Open or update review issue
+        if: steps.legal_watch.outputs.attention == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create legal-watch \
+            --color B60205 \
+            --description "Automatisch erkannter Prüfbedarf beim Rechtsstand" \
+            --force
+          issue_number="$(gh issue list \
+            --state open \
+            --label legal-watch \
+            --limit 1 \
+            --json number \
+            --jq '.[0].number')"
+          if test -n "$issue_number"; then
+            gh issue comment "$issue_number" --body-file legal-watch-report.md
+          else
+            gh issue create \
+              --title "[Rechtsstand] Fachliche Prüfung erforderlich" \
+              --label legal-watch \
+              --body-file legal-watch-report.md
+          fi

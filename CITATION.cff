@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Wenn du diesen Skill zitierst, verwende bitte diese Angaben."
+title: "NOWA X DSGVO Compliance"
+type: software
+authors:
+  - family-names: "Wagner"
+    given-names: "Norman"
+version: 0.4.1
+date-released: 2026-07-18
+license: Apache-2.0

@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "allowed_hosts": [
+      "curia.europa.eu",
+      "eur-lex.europa.eu",
+      "www.bfdi.bund.de",
+      "www.datenschutzkonferenz-online.de",
+      "www.edpb.europa.eu",
+      "www.gesetze-im-internet.de",
+      "www.rechtsprechung-im-internet.de"
+    ],
+    "request_timeout_seconds": 30,
+    "maximum_response_bytes": 25000000
+  },
+  "sources": [
+    {
+      "id": "dsgvo",
+      "title": "Datenschutz-Grundverordnung (EU) 2016/679",
+      "category": "verbindliches-recht",
+      "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj/deu",
+      "hash_mode": "text",
+      "required_markers": ["2016/679", "Datenschutz-Grundverordnung"],
+      "last_reviewed_on": "2026-07-18",
+      "review_every_days": 30
+    },
+    {
+      "id": "bdsg",
+      "title": "Bundesdatenschutzgesetz",
+      "category": "verbindliches-recht",
+      "url": "https://www.gesetze-im-internet.de/bdsg_2018/",
+      "hash_mode": "text",
+      "required_markers": ["Bundesdatenschutzgesetz", "BDSG"],
+      "last_reviewed_on": "2026-07-18",
+      "review_every_days": 30
+    },
+    {
+      "id": "tdddg",
+      "title": "Telekommunikation-Digitale-Dienste-Datenschutz-Gesetz",
+      "category": "verbindliches-recht",
+      "url": "https://www.gesetze-im-internet.de/ttdsg/",
+      "hash_mode": "text",
+      "required_markers": ["Telekommunikation-Digitale-Dienste-Datenschutz-Gesetz", "TDDDG"],
+      "last_reviewed_on": "2026-07-18",
+      "review_every_days": 30
+    },
+    {
+      "id": "ki-verordnung",
+      "title": "KI-Verordnung (EU) 2024/1689",
+      "category": "verbindliches-recht",
+      "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj/deu",
+      "hash_mode": "text",
+      "required_markers": ["2024/1689", "künstliche Intelligenz"],
+      "last_reviewed_on": "2026-07-18",
+      "review_every_days": 30
+    },
+    {
+      "id": "scc-2021-914",
+      "title": "Standardvertragsklauseln für Drittlandtransfers (EU) 2021/914",
+      "category": "durchfuehrungsbeschluss",
+      "url": "https://eur-lex.europa.eu/eli/dec_impl/2021/914/oj?locale=de",
+      "hash_mode": "text",
+      "required_markers": ["2021/914", "Standardvertragsklauseln"],
+      "last_reviewed_on": "2026-07-18",
+      "review_every_days": 60
+    },
+    {
+      "id": "scc-2021-915",
+      "title": "Standardvertragsklauseln Verantwortlicher–Auftragsverarbeiter (EU) 2021/915",
+      "category": "durchfuehrungsbeschluss",
+      "url": "https://eur-lex.europa.eu/eli/dec_impl/2021/915/oj?locale=de",
+      "hash_mode": "text",
+      "required_markers": ["2021/915", "Standardvertragsklauseln"],
+      "last_reviewed_on": "2026-07-18",
+      "review_every_days": 60
+    },
+    {
+      "id": "edpb-leitlinien",
+      "title": "Leitlinien und Empfehlungen des Europäischen Datenschutzausschusses",
+      "category": "behoerdenpraxis",
+      "url": "https://www.edpb.europa.eu/our-work-tools/general-guidance/guidelines-recommendations-best-practices_en",
+      "hash_mode": "text",
+      "required_markers": ["Guidelines", "Recommendations"],
+      "last_reviewed_on": "2026-07-18",
+      "review_every_days": 30
+    },
+    {
+      "id": "dsk-orientierungshilfen",
+      "title": "Orientierungshilfen der Datenschutzkonferenz",
+      "category": "behoerdenpraxis",
+      "url": "https://www.datenschutzkonferenz-online.de/orientierungshilfen.html",
+      "hash_mode": "text",
+      "required_markers": ["Orientierungshilfen", "Datenschutzkonferenz"],
+      "last_reviewed_on": "2026-07-18",
+      "review_every_days": 30
+    },
+    {
+      "id": "bfdi-dsk-ueberblick",
+      "title": "BfDI-Überblick der DSK-Orientierungshilfen",
+      "category": "behoerdenpraxis",
+      "url": "https://www.bfdi.bund.de/DE/Fachthemen/Gremienarbeit/Datenschutzkonferenz/DSK-tableOrientierungshilfe.html",
+      "hash_mode": "text",
+      "required_markers": ["Orientierungshilfen", "Datenschutzkonferenz"],
+      "last_reviewed_on": "2026-07-18",
+      "review_every_days": 30
+    },
+    {
+      "id": "de-rechtsprechung",
+      "title": "Rechtsprechung im Internet",
+      "category": "rechtsprechung",
+      "url": "https://www.rechtsprechung-im-internet.de/",
+      "hash_mode": "text",
+      "required_markers": ["Rechtsprechung im Internet"],
+      "last_reviewed_on": "2026-07-18",
+      "review_every_days": 30
+    }
+  ]
+}

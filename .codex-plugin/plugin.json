@@ -1,0 +1,35 @@
+{
+  "name": "nowax-dsgvo-compliance",
+  "version": "0.4.1",
+  "description": "Quellenbasierte Erstprüfung deutscher und europäischer Datenschutzfragen mit Datensicherheitsgate, Fristentriage und prüfbaren Ergebnissen.",
+  "author": {
+    "name": "Norman Wagner / WagnerConnect"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "dsgvo",
+    "gdpr",
+    "datenschutz",
+    "bdsg",
+    "tdddg",
+    "compliance",
+    "german-law"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "NOWA X DSGVO Compliance",
+    "shortDescription": "DSGVO-Fälle quellenbasiert prüfen",
+    "longDescription": "Prüft Datenschutzfragen nach deutschem und europäischem Recht, priorisiert Fristen, schützt echte Personendaten und trennt verbindliche Quellen von Arbeitshilfen.",
+    "developerName": "Norman Wagner · WagnerConnect",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive"
+    ],
+    "defaultPrompt": [
+      "Prüfe diesen Datenschutzfall mit Quellen.",
+      "Bewerte diese Datenpanne und die Fristen.",
+      "Prüfe diesen AVV nach Artikel 28 DSGVO."
+    ],
+    "brandColor": "#0B3B60"
+  }
+}

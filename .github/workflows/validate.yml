@@ -1,0 +1,27 @@
+name: Validate skill
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Check generated prompts
+        run: python scripts/build_portable_prompts.py --check
+      - name: Validate repository
+        run: python scripts/validate_repo.py
+      - name: Validate legal-source registry offline
+        run: python scripts/legal_watch.py --report /tmp/legal-watch-report.md
+      - name: Run tests
+        run: python -m unittest discover -s tests -v
