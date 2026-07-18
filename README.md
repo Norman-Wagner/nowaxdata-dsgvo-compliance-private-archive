@@ -1,6 +1,6 @@
 # NOWA X DSGVO Compliance
 
-Herstellerneutraler Datenschutz-Skill für KI-Systeme. Entwickelt von **Norman Wagner / WagnerConnect**. Ein Projekt von **NOWA X Data – Der digitale Datenschutzordner**.
+Herstellerneutraler Datenschutz-Skill für KI-Systeme. Entwickelt von **Norman Wagner / WagnerConnect**. Ein Projekt von **nowaXdata – Der digitale Datenschutzordner**.
 
 Der Skill erstellt quellenbasierte Erstprüfungen zu DSGVO (Datenschutz-Grundverordnung), BDSG (Bundesdatenschutzgesetz), TDDDG (Telekommunikation-Digitale-Dienste-Datenschutz-Gesetz) und angrenzenden Regeln. Er erkennt dringende Fristen, verlangt aktuelle amtliche Quellen und verhindert, dass echte Personendaten unnötig in Ausgaben, Dateien oder Beispiele übernommen werden.
 
