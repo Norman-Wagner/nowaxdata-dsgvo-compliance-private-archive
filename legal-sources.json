@@ -76,12 +76,12 @@
     },
     {
       "id": "edpb-leitlinien",
-      "title": "Leitlinien und Empfehlungen des Europäischen Datenschutzausschusses",
+      "title": "Dokumente des Europäischen Datenschutzausschusses",
       "category": "behoerdenpraxis",
-      "url": "https://www.edpb.europa.eu/our-work-tools/general-guidance/guidelines-recommendations-best-practices_en",
+      "url": "https://www.edpb.europa.eu/documents_en",
       "hash_mode": "text",
-      "required_markers": ["Guidelines", "Recommendations"],
-      "last_reviewed_on": "2026-07-18",
+      "required_markers": ["Documents", "Guideline"],
+      "last_reviewed_on": "2026-07-30",
       "review_every_days": 30
     },
     {

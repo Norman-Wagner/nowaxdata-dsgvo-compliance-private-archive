@@ -46,7 +46,7 @@ def make_portable(text: str) -> str:
 
 def render(reference_names: tuple[str, ...], compact: bool) -> str:
     mode = "kompakte" if compact else "vollständige"
-    header = f"""# NOWA X DSGVO Compliance – {mode} portable Anweisung
+    header = f"""# NOWAXDATA DSGVO Compliance – {mode} portable Anweisung
 
 Diese Datei ist aus dem herstellerneutralen Kern erzeugt. Verwende ihren Inhalt
 als System-, Projekt- oder Hauptanweisung. Befolge vorrangige Sicherheits- und
@@ -63,7 +63,7 @@ verbindliche Rechtsberatung.
         chunks.append(f"\n\n---\n\n## Eingebettete Referenz: `{name}`\n\n{content}")
     plugin = json.loads(PLUGIN.read_text(encoding="utf-8"))
     chunks.append(
-        "\n\n---\n\nErzeugt aus NOWA X DSGVO Compliance, "
+        "\n\n---\n\nErzeugt aus NOWAXDATA DSGVO Compliance, "
         f"Version {plugin['version']}, Stand 2026-07-18.\n"
     )
     return "".join(chunks)

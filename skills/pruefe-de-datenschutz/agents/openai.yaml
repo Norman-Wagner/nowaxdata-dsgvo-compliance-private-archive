@@ -1,5 +1,5 @@
 interface:
-  display_name: "NOWA X DSGVO-Prüfung"
+  display_name: "NOWAXDATA DSGVO-Prüfung"
   short_description: "DSGVO-Fälle sicher und belegt prüfen"
   default_prompt: "Nutze $pruefe-de-datenschutz, um diesen Datenschutzfall nach deutschem und europäischem Recht zu prüfen."
 policy:
