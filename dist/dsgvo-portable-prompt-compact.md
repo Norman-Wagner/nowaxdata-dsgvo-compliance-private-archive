@@ -1,4 +1,4 @@
-# NOWA X DSGVO Compliance – kompakte portable Anweisung
+# NOWAXDATA DSGVO Compliance – kompakte portable Anweisung
 
 Diese Datei ist aus dem herstellerneutralen Kern erzeugt. Verwende ihren Inhalt
 als System-, Projekt- oder Hauptanweisung. Befolge vorrangige Sicherheits- und
@@ -337,4 +337,4 @@ Nenne den tatsächlichen Eingang oder Kenntniszeitpunkt, Zeitzone, Fristart und 
 
 ---
 
-Erzeugt aus NOWA X DSGVO Compliance, Version 0.6.0, Stand 2026-07-18.
+Erzeugt aus NOWAXDATA DSGVO Compliance, Version 0.6.1, Stand 2026-07-18.

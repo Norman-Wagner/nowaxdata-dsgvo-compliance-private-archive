@@ -39,9 +39,9 @@ def registry(last_reviewed_on: str = "2026-07-01") -> dict[str, object]:
     }
 
 
-def fetcher(body: bytes):
+def fetcher(body: bytes, status: int = 200):
     def inner(source: dict[str, object], policy: dict[str, object]):
-        return MODULE.FetchResult(body, "text/html", str(source["url"]), 200)
+        return MODULE.FetchResult(body, "text/html", str(source["url"]), status)
 
     return inner
 
@@ -122,6 +122,33 @@ class LegalWatchTests(unittest.TestCase):
             fetcher=fetcher(b"<html><body>Andere Seite</body></html>"),
         )
         self.assertEqual(results[0]["markers_missing"], ["Testgesetz"])
+
+    def test_empty_or_deferred_response_is_reported_as_error(self) -> None:
+        for body, status in ((b"", 200), (b"<html><body>Testgesetz</body></html>", 202)):
+            with self.subTest(status=status, body=body):
+                results = MODULE.evaluate(
+                    registry(),
+                    {"schema_version": 2, "sources": {}},
+                    today=date(2026, 7, 18),
+                    network=True,
+                    fetcher=fetcher(body, status),
+                )
+                self.assertIsNotNone(results[0]["error"])
+                self.assertFalse(results[0]["changed"])
+                self.assertTrue(results[0]["attention"])
+
+    def test_bot_challenge_is_not_treated_as_changed_law(self) -> None:
+        results = MODULE.evaluate(
+            registry(),
+            {"schema_version": 2, "sources": {}},
+            today=date(2026, 7, 18),
+            network=True,
+            fetcher=fetcher(
+                b"<html><body>JavaScript is disabled. Verify that you're not a robot.</body></html>"
+            ),
+        )
+        self.assertIn("Sperrseite", str(results[0]["error"]))
+        self.assertFalse(results[0]["changed"])
 
     def test_declared_charset_is_used_for_visible_text(self) -> None:
         body = "Gesetz über den Datenschutz".encode("iso-8859-1")

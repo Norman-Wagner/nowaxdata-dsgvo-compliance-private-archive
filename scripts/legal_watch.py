@@ -24,7 +24,7 @@ from typing import Callable
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_REGISTRY = ROOT / "legal-sources.json"
 DEFAULT_BASELINE = ROOT / "legal-source-baseline.json"
-USER_AGENT = "NOWA-X-DSGVO-Legal-Watch/1.0"
+USER_AGENT = "NOWAXDATA-DSGVO-Legal-Watch/1.0"
 
 
 class VisibleTextParser(HTMLParser):
@@ -221,12 +221,24 @@ def text_payload(body: bytes, content_type: str, charset: str | None = None) -> 
 
 
 def fingerprint(source: dict[str, object], fetched: FetchResult) -> tuple[str, str]:
+    if fetched.status != 200:
+        raise ValueError(f"Unerwarteter HTTP-Status {fetched.status}")
+    if not fetched.body:
+        raise ValueError("Quelle lieferte keinen auswertbaren Inhalt")
     if source["hash_mode"] == "raw":
         payload = fetched.body
         searchable = fetched.body.decode("utf-8", errors="replace")
     else:
         searchable = text_payload(fetched.body, fetched.content_type, fetched.charset)
         payload = searchable.encode("utf-8")
+    if not searchable.strip():
+        raise ValueError("Quelle lieferte keinen auswertbaren Inhalt")
+    challenge_markers = (
+        "verify that you're not a robot",
+        "javascript is disabled",
+    )
+    if any(marker in searchable.casefold() for marker in challenge_markers):
+        raise ValueError("Quelle lieferte eine Bot- oder JavaScript-Sperrseite")
     return hashlib.sha256(payload).hexdigest(), searchable
 
 

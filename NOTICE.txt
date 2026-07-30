@@ -1,8 +1,8 @@
-NOWA X DSGVO Compliance
+NOWAXDATA DSGVO Compliance
 Copyright 2026 Norman Wagner / WagnerConnect
 
 Developed by Norman Wagner / WagnerConnect.
-Project reference: NOWA X Data – Der digitale Datenschutzordner.
+Project reference: NOWAXDATA – Der digitale Datenschutzordner.
 
-The names NOWA X, NOWA X Data and WagnerConnect are not licensed as
+The names NOWAXDATA and WagnerConnect are not licensed as
 trademarks under the Apache License 2.0.

@@ -1,6 +1,6 @@
 {
   "name": "nowaxdata-dsgvo-compliance",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Quellenbasierte Erstprüfung deutscher und europäischer Datenschutzfragen mit Datensicherheitsgate, Fristentriage und prüfbaren Ergebnissen.",
   "author": {
     "name": "Norman Wagner / WagnerConnect"
@@ -17,7 +17,7 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "NOWA X DSGVO Compliance",
+    "displayName": "NOWAXDATA DSGVO Compliance",
     "shortDescription": "DSGVO-Fälle quellenbasiert prüfen",
     "longDescription": "Prüft Datenschutzfragen nach deutschem und europäischem Recht, priorisiert Fristen, schützt echte Personendaten und trennt verbindliche Quellen von Arbeitshilfen.",
     "developerName": "Norman Wagner · WagnerConnect",

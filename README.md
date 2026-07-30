@@ -1,8 +1,16 @@
-# nowaxdata DSGVO Compliance
+# NOWAXDATA DSGVO Compliance
 
-Herstellerneutraler Datenschutz-Skill für KI-Systeme. Entwickelt von **Norman Wagner / WagnerConnect**. Ein Projekt von **nowaXdata – Der digitale Datenschutzordner**.
+Herstellerneutraler Datenschutz-Skill für KI-Systeme. Entwickelt von **Norman Wagner / WagnerConnect**. Ein Projekt von **NOWAXDATA – Der digitale Datenschutzordner**.
 
 Der Skill erstellt quellenbasierte Erstprüfungen zu DSGVO (Datenschutz-Grundverordnung), BDSG (Bundesdatenschutzgesetz), TDDDG (Telekommunikation-Digitale-Dienste-Datenschutz-Gesetz) und angrenzenden Regeln. Er erkennt dringende Fristen, verlangt aktuelle amtliche Quellen und verhindert, dass echte Personendaten unnötig in Ausgaben, Dateien oder Beispiele übernommen werden.
+
+## Schnellinstallation
+
+```bash
+npx skills add Norman-Wagner/nowaxdata-dsgvo-compliance --skill pruefe-de-datenschutz
+```
+
+Alternativ kann der Ordner `skills/pruefe-de-datenschutz` manuell in eine Agent-Skills-kompatible Umgebung übernommen werden. Für Systeme ohne Skill-Unterstützung stehen die erzeugten Anweisungen im Ordner `dist/` bereit.
 
 ## Nutzung mit verschiedenen KI-Systemen
 
@@ -57,7 +65,7 @@ nowaxdata-dsgvo-compliance/
 
 ## Laufende Aktualisierung
 
-Der Workflow `legal-watch.yml` prüft die registrierten amtlichen und behördlichen Quellen wöchentlich sowie auf manuellen Start. Er erkennt Nichterreichbarkeit, fehlende Kennzeichen, geänderte technische Fingerabdrücke und überfällige fachliche Prüfintervalle. Bei Auffälligkeiten erstellt oder ergänzt er ein GitHub-Issue; er ändert niemals automatisch eine Rechtsauslegung.
+Der Workflow `legal-watch.yml` prüft die registrierten amtlichen und behördlichen Quellen wöchentlich sowie auf manuellen Start. Er erkennt Nichterreichbarkeit, fehlende Kennzeichen, geänderte technische Fingerabdrücke und überfällige fachliche Prüfintervalle. Leere Antworten, unerwartete HTTP-Statuscodes und Bot- beziehungsweise JavaScript-Sperrseiten werden als technische Abruffehler statt als Rechtsänderung behandelt. Bei Auffälligkeiten erstellt oder ergänzt er ein GitHub-Issue; er ändert niemals automatisch eine Rechtsauslegung.
 
 `legal-sources.json` ist das maschinenlesbare Quellenregister. `legal-source-baseline.json` enthält automatisch erfasste technische Fingerabdrücke. Diese belegen nur den beobachteten Dokumentstand und sind ausdrücklich keine menschliche oder juristische Freigabe. Verantwortlichkeiten, Freigabegrenzen und der Abschlussprozess stehen in [RECHTSSTAND.md](RECHTSSTAND.md).
 
@@ -65,7 +73,7 @@ Die technische Ausgangsbeobachtung kann automatisiert erzeugt werden. Bei neuen 
 
 Geplante GitHub-Workflows können bei längerer Inaktivität eines öffentlichen Repositorys deaktiviert werden. Der erfolgreiche Lauf ist deshalb monatlich manuell zu kontrollieren.
 
-`release.yml` prüft bei Tags und manuellen Läufen das vollständige Projekt. Bei einem Tag muss beispielsweise `v0.6.0` exakt zur Version `0.6.0` im Plugin-Manifest passen. Der Workflow veröffentlicht bewusst nichts automatisch; eine Veröffentlichung bleibt eine kontrollierte Maintainer-Entscheidung.
+`release.yml` prüft bei Tags und manuellen Läufen das vollständige Projekt. Bei einem Tag muss `vX.Y.Z` exakt zur Version `X.Y.Z` im Plugin-Manifest passen. Der Workflow veröffentlicht bewusst nichts automatisch; eine Veröffentlichung bleibt eine kontrollierte Maintainer-Entscheidung.
 
 ## Sicherheitsgrenzen
 
@@ -93,4 +101,4 @@ Rechtsstand des eingebauten Quellenregisters: **18. Juli 2026**. Jede konkrete P
 
 ## Lizenz und Namensnennung
 
-Der Quelltext steht unter Apache License 2.0. Die Lizenz gewährt keine Rechte an den Namen und Kennzeichen **NOWA X**, **NOWA X Data** oder **WagnerConnect**. Einzelheiten stehen in `LICENSE.txt` und `NOTICE.txt`.
+Der Quelltext steht unter Apache License 2.0. Die Lizenz gewährt keine Rechte an den Namen und Kennzeichen **NOWAXDATA** oder **WagnerConnect**. Einzelheiten stehen in `LICENSE.txt` und `NOTICE.txt`.

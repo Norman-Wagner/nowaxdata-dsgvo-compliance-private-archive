@@ -1,6 +1,6 @@
 # Datenschutzinformation zum Projekt
 
-Stand: 18. Juli 2026
+Stand: 30. Juli 2026
 
 Diese Information beschreibt den technischen Datenschutzrahmen dieses öffentlichen Open-Source-Projekts. Sie ist keine allgemeine Datenschutzerklärung für GitHub, einen KI-Anbieter oder eine spätere Website.
 
